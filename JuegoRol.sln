@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuegoRol", "JuegoRol\JuegoRol.csproj", "{0F8139D6-0059-4332-B990-3FE0FB987824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{218C4273-2117-443F-B959-B0B6C7F7A427}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F8139D6-0059-4332-B990-3FE0FB987824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F8139D6-0059-4332-B990-3FE0FB987824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F8139D6-0059-4332-B990-3FE0FB987824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F8139D6-0059-4332-B990-3FE0FB987824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{218C4273-2117-443F-B959-B0B6C7F7A427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218C4273-2117-443F-B959-B0B6C7F7A427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218C4273-2117-443F-B959-B0B6C7F7A427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218C4273-2117-443F-B959-B0B6C7F7A427}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45246259-4FD8-460D-9B68-A88D8DA1B726}
+	EndGlobalSection
+EndGlobal
