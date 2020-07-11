@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace JuegoRol
@@ -7,29 +8,38 @@ namespace JuegoRol
     {
         static void Main(string[] args)
         {
-            Personaje mipersonaje = new Personaje();
+            List<Personaje> ListaPersonajes = new List<Personaje>();
 
-            string[] tipo = { "", "", "", "" };
+            var aleat = new Random();
 
-            Console.WriteLine("Cuantos personajes desea crear: ");
-            int num = Convert.ToInt32(Console.ReadLine());
+            int CantidadDePersonajes = aleat.Next(40,50);
 
-            for(int i = 1; i <= num; i++)
+            for (int i = 1; i <= CantidadDePersonajes; i++)
             {
-                Random Aleatorio = new Random();
+                Personaje mipersonaje = new Personaje();
+                mipersonaje.GenerarPersonaje();
 
-                for (j=0; j < 3; j++)
-                {
-                    int alteatorio = Aleatorio.Next((int)ValoresMaximos.armadura);
-                }
-
-                foreach ()
-                {
-
-                }
-
-
+                ListaPersonajes.Add(mipersonaje);
             }
+
+            string dato;
+
+            foreach (Personaje s in ListaPersonajes)
+            {
+                dato = s.MostrarDatos();
+                Console.WriteLine(dato);
+            }
+
+            string caract;
+
+            foreach (Personaje s in ListaPersonajes)
+            {
+                caract = s.MostrarCaracteristicas();
+                Console.WriteLine(caract);
+            }
+
+            //string datos = ListaPersonajes
+
         }
     }
 }
