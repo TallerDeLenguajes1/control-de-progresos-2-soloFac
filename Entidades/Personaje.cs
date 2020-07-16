@@ -73,6 +73,7 @@ namespace JuegoRol
             Dato.Apodo = Apodo[rand.Next(Apodo.Length)];
             Dato.Tipo = (JuegoRol.Tipos) rand.Next(7 + 1);
             Dato.FechaNacimiento = Fecha;
+            Dato.Salud = 100;
 
             Caracteristica.Velocidad = rand.Next((int)MaximosValCaract.velocidad) + 1;
             Caracteristica.Destreza = rand.Next((int)MaximosValCaract.destreza) + 1;
@@ -97,6 +98,17 @@ namespace JuegoRol
 
             return StringCaracteristicas;
         }
+
+        public void Atacar(Personaje PersonajeAtacante, Personaje PersonajeAgredido)
+        {
+            int PoderDisparo = PersonajeAtacante.Caracteristica.Destreza * PersonajeAtacante.Caracteristica.Fuerza * PersonajeAtacante.Caracteristica.Nivel;
+            int EfectividadDisparo = (new Random().Next(100) + 1) / 100;
+            int ValorAtaque = PoderDisparo * EfectividadDisparo;
+            int PoderDefensa = PersonajeAgredido.Caracteristica.Armadura * PersonajeAgredido.Caracteristica.Velocidad;
+            int DañoProvocado = (((ValorAtaque * EfectividadDisparo) - PoderDefensa) / 5000) * 100;
+
+            PersonajeAgredido.Dato.Salud -= DañoProvocado;
+        }
     }
 
     public class Datos
@@ -105,10 +117,12 @@ namespace JuegoRol
         string nombre;
         string apodo;
         DateTime fechaNacimiento;
+        int salud;
 
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apodo { get => apodo; set => apodo = value; }
         public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
+        public int Salud { get => salud; set => salud = value; }
         internal Tipos Tipo { get => tipo; set => tipo = value; }
     }
 
