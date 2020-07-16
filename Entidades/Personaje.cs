@@ -34,33 +34,6 @@ namespace JuegoRol
         public Datos Dato { get => dato; set => dato = value; }
         public Caracteristicas Caracteristica { get => caracteristica; set => caracteristica = value; }
 
-        /*
-        Personaje CargarDatos()
-        {
-            Random gen = new Random();
-            Velocidad = gen.Next(1, Tipo.Velocidad);
-            Destreza = ;
-            Fuerza =
-            Nivel = 
-            Armadura =
-
-            return 
-        }
-        */
-
-        /*
-        static public class Helper
-        {
-            public static DateTime FechaAleatoria(int anios)
-            {
-                Random gen = new Random();
-                DateTime start = DateTime.Today.AddDays(-anios);
-                int range = (DateTime.Today - start).Days;
-                return start.AddDays(gen.Next(range));
-            }
-        }
-        */
-
         public void GenerarPersonaje()
         {
             var rand = new Random();
@@ -99,15 +72,15 @@ namespace JuegoRol
             return StringCaracteristicas;
         }
 
-        public void Atacar(Personaje PersonajeAtacante, Personaje PersonajeAgredido)
+        public void Atacar(Personaje PersonajeAtacado)
         {
-            int PoderDisparo = PersonajeAtacante.Caracteristica.Destreza * PersonajeAtacante.Caracteristica.Fuerza * PersonajeAtacante.Caracteristica.Nivel;
+            int PoderDisparo = Caracteristica.Destreza * Caracteristica.Fuerza * Caracteristica.Nivel;
             int EfectividadDisparo = (new Random().Next(100) + 1) / 100;
             int ValorAtaque = PoderDisparo * EfectividadDisparo;
-            int PoderDefensa = PersonajeAgredido.Caracteristica.Armadura * PersonajeAgredido.Caracteristica.Velocidad;
+            int PoderDefensa = PersonajeAtacado.Caracteristica.Armadura * PersonajeAtacado.Caracteristica.Velocidad;
             int DañoProvocado = (((ValorAtaque * EfectividadDisparo) - PoderDefensa) / 5000) * 100;
 
-            PersonajeAgredido.Dato.Salud -= DañoProvocado;
+            PersonajeAtacado.Dato.Salud -= DañoProvocado;
         }
     }
 
@@ -139,6 +112,43 @@ namespace JuegoRol
         public int Fuerza { get => fuerza; set => fuerza = value; }
         public int Nivel { get => nivel; set => nivel = value; }
         public int Armadura { get => armadura; set => armadura = value; }
+    }
+
+    public class SistemaDeCombate
+    {
+        static public void Combate(Personaje Personaje1, Personaje Personaje2)
+        {
+            //Realiza 3 veces el ataque al oponenete
+            for (int i = 0; i < 3; i++)
+            {
+                Personaje1.Atacar(Personaje2);   //Personaje 1 ataca al Personaje 2
+                Personaje2.Atacar(Personaje1);   //Al reves
+            }
+        }
+
+        static public void CompararSalud(Personaje Personaje1, Personaje Personaje2, List<Personaje> ListaPersonajes, int SaludIniPersonaje1, int SaludIniPersonaje2)  //Aqui tambien se esta realizando un pasaje por refenrecia? Como cuando se realiza un llamado al metodo de una clase
+        {
+            if (Personaje1.Dato.Salud == Personaje2.Dato.Salud)
+            {
+
+            }
+            else if (Personaje1.Dato.Salud > Personaje2.Dato.Salud)
+            {
+                ListaPersonajes.Remove(Personaje2);
+                PremioAlGanador(Personaje1, SaludIniPersonaje1);
+            }
+            else
+            {
+                ListaPersonajes.Remove(Personaje1);
+                PremioAlGanador(Personaje2, SaludIniPersonaje2);
+            }
+        }
+
+        static public void PremioAlGanador(Personaje Ganador, int Salud)
+        {
+            Ganador.Dato.Salud = Salud;
+            Ganador.Dato.Salud += 10;
+        }
     }
 }
 

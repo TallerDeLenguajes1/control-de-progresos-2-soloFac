@@ -20,7 +20,7 @@ namespace JuegoRol
                 Personaje mipersonaje = new Personaje();
                 mipersonaje.GenerarPersonaje();
 
-                ListaPersonajes.Add(mipersonaje);
+                ListaPersonajes.Add(mipersonaje);   //Cuando agrego un personaje a la lista, se crea una copia y se almacena en la lista?
             }
 
             //Generar dos valores aleatorios distintos
@@ -40,10 +40,9 @@ namespace JuegoRol
             int SaludIniPersonaje1 = PersonajeN1.Dato.Salud;
             int SaludIniPersonaje2 = PersonajeN2.Dato.Salud;
 
-            Combate(PersonajeN1, PersonajeN2);
+            SistemaDeCombate.Combate(PersonajeN1, PersonajeN2);
 
-            CompararSalud(PersonajeN1, PersonajeN2, ListaPersonajes, SaludIniPersonaje1, SaludIniPersonaje2);
-
+            SistemaDeCombate.CompararSalud(PersonajeN1, PersonajeN2, ListaPersonajes, SaludIniPersonaje1, SaludIniPersonaje2);
 
 
             //Console.WriteLine(ListaPersonajes[3]);
@@ -58,6 +57,7 @@ namespace JuegoRol
                 Console.WriteLine(dato);
             }
 
+            //Listado de Caracteristicas
             string caract;
 
             foreach (Personaje s in ListaPersonajes)
@@ -69,38 +69,6 @@ namespace JuegoRol
 
         }
 
-        static void Combate(Personaje Personaje1, Personaje Personaje2)
-        {
-            //Realiza 3 veces el ataque al oponenete
-            for (int i = 0; i < 3; i++)
-            {
-                Personaje1.Atacar(Personaje1, Personaje2);   //Personaje 1 ataca al Personaje 2
-                Personaje2.Atacar(Personaje2, Personaje1);   //Al reves
-            }
-        }
-
-        static void CompararSalud(Personaje Personaje1, Personaje Personaje2, List<Personaje> ListaPersonajes, int SaludIniPersonaje1, int SaludIniPersonaje2)  //Aqui tambien se esta realizando un pasaje por refenrecia? Como cuando se realiza un llamado al metodo de una clase
-        {
-            if (Personaje1.Dato.Salud == Personaje2.Dato.Salud)
-            {
-
-            }
-            else if (Personaje1.Dato.Salud > Personaje2.Dato.Salud)
-            {
-                ListaPersonajes.Remove(Personaje2);
-                PremioAlGanador(Personaje1, SaludIniPersonaje1);
-            }
-            else
-            {
-                ListaPersonajes.Remove(Personaje1);
-                PremioAlGanador(Personaje2, SaludIniPersonaje2);
-            }
-        }
-
-        static void PremioAlGanador(Personaje Ganador, int Salud)
-        {
-            Ganador.Dato.Salud = Salud;
-            Ganador.Dato.Salud += 10;
-        }
+        
     }
 }
